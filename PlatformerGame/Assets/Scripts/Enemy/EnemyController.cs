@@ -11,28 +11,53 @@ public class EnemyPatrol : MonoBehaviour
     public Transform CheckWall;
     public Transform CheckCliff;
     public LayerMask whatIsGround;
+    public float PlayerDetectionDistance = 2f;
 
     private bool isTouchingWall;
     private bool isAtCliffEdge;
+    private bool canSeePlayer;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+
     }
 
     void FixedUpdate()
     {
-
+        //Wall and Cliff Check positions
         isTouchingWall = Physics2D.OverlapCircle(CheckWall.position, .1f, whatIsGround);
-
         isAtCliffEdge = !Physics2D.OverlapCircle(CheckCliff.position, .1f, whatIsGround);
 
-        if (isTouchingWall || isAtCliffEdge)
+        //Direction depends on moveDirection value (Left, Right)
+        canSeePlayer = false;
+        Vector2 direction = new Vector2(moveDirection, 0);
+
+        //Raycast can detect enemie's (itself) collider. Proper wall checker position is required
+        //Wall Checker is Child of Enemy
+        RaycastHit2D playerHit = Physics2D.Raycast(CheckWall.position, direction, PlayerDetectionDistance);
+
+
+        Debug.DrawRay(CheckWall.position, direction * PlayerDetectionDistance, Color.green);
+
+        if (playerHit.collider != null && playerHit.collider.CompareTag("Player"))
         {
-            Flip();
+            canSeePlayer = true;
         }
 
-        rb.linearVelocity = new Vector2(moveSpeed * moveDirection, rb.linearVelocity.y);
+        if (canSeePlayer)
+        {
+            rb.linearVelocity = Vector2.zero;
+        }
+        else
+        {
+            if (isTouchingWall || isAtCliffEdge)
+            {
+                Flip();
+            }
+
+            rb.linearVelocity = new Vector2(moveSpeed * moveDirection, rb.linearVelocity.y);
+        }
     }
 
     void Flip()
