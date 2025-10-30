@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class EnemyPatrol : MonoBehaviour
+public class EnemyController : MonoBehaviour
 {
     [Header("Movement")]
     public float moveSpeed = 2f;
@@ -17,14 +17,27 @@ public class EnemyPatrol : MonoBehaviour
     private bool isAtCliffEdge;
     private bool canSeePlayer;
 
+
+    public StateMachine StateMachine { get; private set; }
+    private void Awake()
+    {
+        StateMachine = new StateMachine(this);
+    }
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        StateMachine.Initialize(StateMachine.IdleState);
+    }
 
+    private void Update()
+    {
+        StateMachine.UpdateState();
     }
 
     void FixedUpdate()
     {
+        StateMachine.PhysicsUpdate();
+
         //Wall and Cliff Check positions
         isTouchingWall = Physics2D.OverlapCircle(CheckWall.position, .1f, whatIsGround);
         isAtCliffEdge = !Physics2D.OverlapCircle(CheckCliff.position, .1f, whatIsGround);
@@ -33,7 +46,7 @@ public class EnemyPatrol : MonoBehaviour
         canSeePlayer = false;
         Vector2 direction = new Vector2(moveDirection, 0);
 
-        //Raycast can detect enemie's (itself) collider. Proper wall checker position is required
+        //Raycast can detect self object (enemy) collider. Proper wall checker position is required
         //Wall Checker is Child of Enemy
         RaycastHit2D playerHit = Physics2D.Raycast(CheckWall.position, direction, PlayerDetectionDistance);
 
