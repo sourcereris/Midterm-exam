@@ -14,6 +14,8 @@ public class EnemyController : MonoBehaviour
     public Transform CheckCliff;
     public LayerMask whatIsGround;
     public LayerMask whatIsBox;
+
+    private LayerMask whatIsObstacle;
     public float PlayerDetectionDistance = 2f;
 
     public Transform PlayerTransform { get; set; }
@@ -23,6 +25,8 @@ public class EnemyController : MonoBehaviour
     public StateMachine StateMachine { get; private set; }
     private void Awake()
     {
+        whatIsObstacle = whatIsGround | whatIsBox;
+
         _player = GameObject.FindGameObjectWithTag("Player");
         if (_player != null) PlayerTransform = _player.transform;
         else Debug.Log("No GameObjec With Tag(\"Player\")");
@@ -47,12 +51,9 @@ public class EnemyController : MonoBehaviour
         StateMachine.PhysicsUpdate();
 
         //Wall and Cliff Check positions
-        isTouchingWall = Physics2D.OverlapCircle(CheckWall.position, .1f, whatIsGround);
-        isAtCliffEdge = !Physics2D.OverlapCircle(CheckCliff.position, .1f, whatIsGround);
+        isTouchingWall = Physics2D.OverlapCircle(CheckWall.position, .1f, whatIsObstacle);
+        isAtCliffEdge = !Physics2D.OverlapCircle(CheckCliff.position, .1f, whatIsObstacle);
 
-
-        //isTouchingWall = Physics2D.OverlapCircle(CheckWall.position, .1f, whatIsBox);
-        //isAtCliffEdge = !Physics2D.OverlapCircle(CheckCliff.position, .1f, whatIsBox);
 
         if (isTouchingWall || isAtCliffEdge)
         {

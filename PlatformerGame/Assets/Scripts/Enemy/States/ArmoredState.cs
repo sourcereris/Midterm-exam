@@ -16,11 +16,15 @@ public class ArmoredState : BaseState
 
     public override void Exit()
     {
-        enemy.animator.ResetTrigger("Start Defending");
         enemy.animator.SetTrigger("Stop Defending");
     }
 
     public override void FrameUpdate()
+    {
+        
+    }
+
+    public override void PhysicsUpdate()
     {
         if (enemy.PlayerTransform == null) return;
 
@@ -30,10 +34,5 @@ public class ArmoredState : BaseState
         {
             enemy.StateMachine.ChangeState(enemy.StateMachine.IdleState);
         }
-    }
-
-    public override void PhysicsUpdate()
-    {
-        
     }
 }
