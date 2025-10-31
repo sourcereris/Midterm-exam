@@ -5,10 +5,12 @@ public class StateMachine
     public BaseState CurrentState {  get; private set; }
 
     public IdleState IdleState;
+    public ArmoredState ArmoredState;
 
     public StateMachine(EnemyController enemy) 
     {
         this.IdleState = new IdleState(enemy, this);
+        this.ArmoredState = new ArmoredState(enemy, this);
     }
 
     public void Initialize(BaseState startingState) 

@@ -209,7 +209,7 @@ Transform:
   m_GameObject: {fileID: 17531574}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.414, y: -0.161, z: 0}
+  m_LocalPosition: {x: -4.03, y: 0.03, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1204,6 +1204,7 @@ GameObject:
   - component: {fileID: 180175077}
   - component: {fileID: 180175082}
   - component: {fileID: 180175083}
+  - component: {fileID: 180175084}
   m_Layer: 0
   m_Name: Armored Enemy 1
   m_TagString: Untagged
@@ -1300,7 +1301,7 @@ Transform:
   m_GameObject: {fileID: 180175076}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.5, y: 0.7, z: 0}
+  m_LocalPosition: {x: 2.5, y: 0.349, z: 0}
   m_LocalScale: {x: 0.2, y: 0.2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1391,6 +1392,18 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   PlayerDetectionDistance: 2
+--- !u!114 &180175084
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 180175076}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f2ac0ef62d89ce47a0a716a34b9dfcf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AnimationEvenetRelay
 --- !u!1 &256689380
 GameObject:
   m_ObjectHideFlags: 0
@@ -2170,7 +2183,7 @@ Transform:
   m_GameObject: {fileID: 963194225}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.41400024, y: -0.16099988, z: -10}
+  m_LocalPosition: {x: -4.0300007, y: 0.030000119, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3587,7 +3600,7 @@ Transform:
   m_GameObject: {fileID: 2122338049}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.41400048, y: -0.16099988, z: -10}
+  m_LocalPosition: {x: -4.0300007, y: 0.030000119, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
