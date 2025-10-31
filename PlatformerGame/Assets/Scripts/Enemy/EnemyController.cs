@@ -13,6 +13,7 @@ public class EnemyController : MonoBehaviour
     public Transform CheckWall;
     public Transform CheckCliff;
     public LayerMask whatIsGround;
+    public LayerMask whatIsBox;
     public float PlayerDetectionDistance = 2f;
 
     public Transform PlayerTransform { get; set; }
@@ -48,6 +49,10 @@ public class EnemyController : MonoBehaviour
         //Wall and Cliff Check positions
         isTouchingWall = Physics2D.OverlapCircle(CheckWall.position, .1f, whatIsGround);
         isAtCliffEdge = !Physics2D.OverlapCircle(CheckCliff.position, .1f, whatIsGround);
+
+
+        //isTouchingWall = Physics2D.OverlapCircle(CheckWall.position, .1f, whatIsBox);
+        //isAtCliffEdge = !Physics2D.OverlapCircle(CheckCliff.position, .1f, whatIsBox);
 
         if (isTouchingWall || isAtCliffEdge)
         {

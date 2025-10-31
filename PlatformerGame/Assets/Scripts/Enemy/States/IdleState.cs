@@ -20,11 +20,6 @@ public class IdleState : BaseState
 
     public override void FrameUpdate()
     {
-        
-    }
-
-    public override void PhysicsUpdate()
-    {
         if (enemy.PlayerTransform == null) return;
 
         Vector3 distance = enemy.transform.position - enemy.PlayerTransform.position;
@@ -33,5 +28,10 @@ public class IdleState : BaseState
         {
             enemy.StateMachine.ChangeState(enemy.StateMachine.ArmoredState);
         }
+    }
+
+    public override void PhysicsUpdate()
+    {
+        
     }
 }

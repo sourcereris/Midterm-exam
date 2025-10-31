@@ -6,7 +6,6 @@ public class BlobController : MonoBehaviour
 {
     private Animator _animator;
     private CharacterController2D _character;
-
     // Start is called before the first frame update
     void Awake()
     {
